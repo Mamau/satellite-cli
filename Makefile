@@ -26,6 +26,8 @@ yarn: ## Install yarn dependencies
 watch: ## Run watch
 	docker run -ti -u $(user_id) --workdir=/home/node -v $(work-dir):/home/node node:$(node-v) /bin/bash -c "yarn watch"
 
-composer: ## Install composer dependencies
+ignore-platform=--ignore-platform-reqs
+cc=install $(ignore-platform)
+composer: ## Install composer dependencies, args (optional) сс="require some-package/name"
 	## add specific repository, need modify bin/bahs command: "composer config $(composer-repository) $(username) $(token); composer i --ignore-platform-reqs"
-	docker run -ti -u $(user_id) --workdir=/home/www-data -v /etc/ssl/certs:/etc/ssl/certs -v $(work-dir):/home/www-data composer:$(composer-v) /bin/bash -c "composer i --ignore-platform-reqs"
+	docker run -ti -u $(user_id) --workdir=/home/www-data -v /etc/ssl/certs:/etc/ssl/certs -v $(work-dir):/home/www-data composer:$(composer-v) /bin/bash -c "composer $(cc) $(ignore-platform)"
