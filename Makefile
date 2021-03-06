@@ -17,17 +17,20 @@ guard-%:
 	        exit 1; \
 	fi
 
-bower: ## Install bower dependencies
-	docker run -ti -u $(user_id) -v $(work-dir):/home/node mamau/bower install
+gc=--version
+gulp: ## Use gulp, args (optional) gс="version"
+	docker run -ti -u $(user_id) -v $(work-dir):/home/node mamau/gulp $(gc)
 
-yarn: ## Install yarn dependencies
-	docker run -ti -u $(user_id) --workdir=/home/node -v $(work-dir):/home/node node:$(node-v) /bin/bash -c "yarn"
+bc=--version
+bower: ## Install bower dependencies, args (optional) bс="install"
+	docker run -ti -u $(user_id) -v $(work-dir):/home/node mamau/bower $(bc)
 
-watch: ## Run watch
-	docker run -ti -u $(user_id) --workdir=/home/node -v $(work-dir):/home/node node:$(node-v) /bin/bash -c "yarn watch"
+yc=--version
+yarn: ## Install yarn dependencies, args (optional) yс="watch"
+	docker run -ti -u $(user_id) --workdir=/home/node -v $(work-dir):/home/node node:$(node-v) /bin/bash -c "yarn $(yc)"
 
 ignore-platform=--ignore-platform-reqs
 cc=install $(ignore-platform)
 composer: ## Install composer dependencies, args (optional) сс="require some-package/name"
 	## add specific repository, need modify bin/bahs command: "composer config $(composer-repository) $(username) $(token); composer i --ignore-platform-reqs"
-	docker run -ti -u $(user_id) --workdir=/home/www-data -v /etc/ssl/certs:/etc/ssl/certs -v $(work-dir):/home/www-data composer:$(composer-v) /bin/bash -c "composer $(cc) $(ignore-platform)"
+	docker run -ti -u $(user_id) --workdir=/home/www-data -v $(work-dir)/cache/composer:/tmp -v /etc/ssl/certs:/etc/ssl/certs -v $(work-dir):/home/www-data composer:$(composer-v) /bin/bash -c "composer $(cc) $(ignore-platform)"
