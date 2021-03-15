@@ -7,8 +7,16 @@
             "email": "mopckou_pak48rus@mail.ru"
         }
     ],
+    "bin": [
+        "bin/starter"
+    ],
     "require": {
+        "php": ">=7.4",
+        "symfony/http-client": "^5.1",
         "symfony/console": "^5.2"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.1"
     },
     "autoload": {
         "psr-4": {
