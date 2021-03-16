@@ -1,6 +1,7 @@
 {
     "name": "mamau/wkit",
     "description": "All tools for working with your project",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -23,5 +24,7 @@
         "psr-4": {
             "Mamau\\Wkit\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
