@@ -6,13 +6,15 @@ use Symfony\Component\Console\Application;
 
 $composerAutoloadPaths = [
     // Install as dependency
-    __DIR__ . '/../../../autoload.php',
-    __DIR__ . '/../../autoload.php',
-    __DIR__ . '/../autoload.php',
+    __DIR__.'/../../../autoload.php',
+    __DIR__.'/../../autoload.php',
+    __DIR__.'/../autoload.php',
 
     // Install as root package
-    __DIR__ . '/../vendor/autoload.php',
+    __DIR__.'/../vendor/autoload.php',
 ];
+
+define('PROJECT_ROOT', __DIR__.'/../../');
 
 foreach ($composerAutoloadPaths as $file) {
     if (is_file($file)) {

@@ -44,7 +44,7 @@ final class GithubService
 
         foreach ($assets as $asset) {
             if (str_contains($asset->getName(), $os)) {
-                $file = new \SplFileObject(__DIR__.'/../../'.$asset->getName(), 'wb+');
+                $file = new \SplFileObject(PROJECT_ROOT.$asset->getName(), 'wb+');
 
                 foreach ($this->repository->downloadBinary($asset->getUri(), $progress) as $chunk) {
                     $file->fwrite($chunk);
