@@ -50,21 +50,23 @@ final class GithubRepository
                 $assets[] = new Asset($asset['name'], $asset['browser_download_url']);
             }
         }
+
         return $assets;
     }
 
     /**
      * @param  string  $url
+     * @param  \Closure|null  $progress
      * @return \Traversable
      * @throws TransportExceptionInterface
      */
-    public function downloadBinary(string $url): \Traversable
+    public function downloadBinary(string $url, \Closure $progress = null): \Traversable
     {
-        $response = $this->client->request('GET', $url,
-//            [
-//            'on_progress' => $progress,
-//            ]
+        $response = $this->client->request('GET', $url, [
+                'on_progress' => $progress,
+            ]
         );
+
         foreach ($this->client->stream($response) as $chunk) {
             yield $chunk->getContent();
         }

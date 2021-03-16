@@ -16,16 +16,6 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
  */
 final class GithubService
 {
-    public const OS_DARWIN = 0;
-    public const OS_LINUX = 1;
-    public const OS_WINDOWS = 2;
-
-    public const OS_LIST = [
-        self::OS_DARWIN => 'Darwin',
-        self::OS_LINUX => 'Linux',
-        self::OS_WINDOWS => 'Windows',
-    ];
-
     /**
      * @var GithubRepository
      */
@@ -40,22 +30,23 @@ final class GithubService
     }
 
     /**
-     * @param  int  $idOs
+     * @param  string  $os
+     * @param  \Closure|null  $progress
      * @throws ClientExceptionInterface
      * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function fetchBinary(int $idOs): void
+    public function fetchBinary(string $os, \Closure $progress = null): void
     {
         $assets = $this->repository->fetchReleases();
 
         foreach ($assets as $asset) {
-            if (str_contains($asset->getName(), strtolower(self::OS_LIST[$idOs]))) {
-                $file = new \SplFileObject(__DIR__. '/../../' . $asset->getName(), 'wb+');
+            if (str_contains($asset->getName(), $os)) {
+                $file = new \SplFileObject(__DIR__.'/../../'.$asset->getName(), 'wb+');
 
-                foreach ($this->repository->downloadBinary($asset->getUri())as $chunk) {
+                foreach ($this->repository->downloadBinary($asset->getUri(), $progress) as $chunk) {
                     $file->fwrite($chunk);
                 }
             }
