@@ -1,6 +1,7 @@
 {
     "name": "mamau/wkit",
     "description": "All tools for working with your project",
+    "license": "MIT",
     "authors": [
         {
             "name": "mamau",
