@@ -61,6 +61,8 @@ class FetchReleaseCommand extends AbstractCommand
             $progress->setProgress($size);
         });
 
+        $this->io->writeln('');
+
         return self::SUCCESS;
     }
 }

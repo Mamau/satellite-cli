@@ -1,9 +1,28 @@
 #!/usr/bin/env php
 <?php
-require __DIR__.'/../vendor/autoload.php';
 
 use Mamau\Wkit\Commands\FetchReleaseCommand;
 use Symfony\Component\Console\Application;
+
+$composerAutoloadPaths = [
+    // Install as dependency
+    __DIR__ . '/../../../autoload.php',
+    __DIR__ . '/../../autoload.php',
+    __DIR__ . '/../autoload.php',
+
+    // Install as root package
+    __DIR__ . '/../vendor/autoload.php',
+];
+
+foreach ($composerAutoloadPaths as $file) {
+    if (is_file($file)) {
+        define('RR_COMPOSER_INSTALL', $file);
+
+        break;
+    }
+}
+
+require RR_COMPOSER_INSTALL;
 
 $application = new Application();
 
