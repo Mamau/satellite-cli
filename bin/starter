@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 
+use Mamau\Wkit\Commands\ConfigCommand;
 use Mamau\Wkit\Commands\FetchReleaseCommand;
 use Symfony\Component\Console\Application;
 
@@ -34,5 +35,6 @@ require RR_COMPOSER_INSTALL;
 $application = new Application();
 
 $application->add(new FetchReleaseCommand());
+$application->add(new ConfigCommand());
 
 $application->run();

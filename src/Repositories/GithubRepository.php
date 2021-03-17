@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Mamau\Wkit\Repositories;
 
 use Mamau\Wkit\Entities\Asset;
+use Mamau\Wkit\Entities\FileContent;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -18,7 +19,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  */
 final class GithubRepository
 {
-    const GITHUB_API_URI = 'https://api.github.com/repos/Mamau/starter/releases';
+    const GITHUB_API_URI = 'https://api.github.com/repos/Mamau/starter/';
 
     /**
      * @var HttpClientInterface
@@ -44,7 +45,8 @@ final class GithubRepository
     public function fetchReleases(): array
     {
         $assets = [];
-        $response = $this->client->request('GET', self::GITHUB_API_URI);
+        $url = self::GITHUB_API_URI.'releases';
+        $response = $this->client->request('GET', $url);
         foreach ($response->toArray() as $release) {
             foreach ($release['assets'] as $asset) {
                 $assets[] = new Asset($asset['name'], $asset['browser_download_url']);
@@ -55,20 +57,20 @@ final class GithubRepository
     }
 
     /**
-     * @param  string  $url
-     * @param  \Closure|null  $progress
-     * @return \Traversable
+     * @param  string  $fileName
+     * @return FileContent
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function downloadBinary(string $url, \Closure $progress = null): \Traversable
+    public function fetchFileContent(string $fileName): FileContent
     {
-        $response = $this->client->request('GET', $url, [
-                'on_progress' => $progress,
-            ]
-        );
+        $url = sprintf('%scontents/%s', self::GITHUB_API_URI, $fileName);
+        $response = $this->client->request('GET', $url);
+        $data = $response->toArray();
 
-        foreach ($this->client->stream($response) as $chunk) {
-            yield $chunk->getContent();
-        }
+        return new FileContent($data['name'], $data['download_url']);
     }
 }
