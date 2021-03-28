@@ -21,6 +21,14 @@ class ConfigCommand extends AbstractCommand
     protected static $defaultName = 'config';
 
     /**
+     * @return void
+     */
+    protected function configure(): void
+    {
+        $this->setDescription('Download fresh config starter.yaml file');
+    }
+
+    /**
      * @param  InputInterface  $input
      * @param  OutputInterface  $output
      * @return int

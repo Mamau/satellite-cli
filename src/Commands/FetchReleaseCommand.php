@@ -23,6 +23,15 @@ class FetchReleaseCommand extends AbstractCommand
     protected static $defaultName = 'fetch';
 
     /**
+     * @return void
+     */
+    protected function configure(): void
+    {
+        $this->setDescription('Download fresh starter bin file');
+    }
+
+
+    /**
      * @param  InputInterface  $input
      * @param  OutputInterface  $output
      * @return int
