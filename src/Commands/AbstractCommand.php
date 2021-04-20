@@ -17,7 +17,7 @@ abstract class AbstractCommand extends Command
     /**
      * @var SymfonyStyle
      */
-    protected $io;
+    protected SymfonyStyle $io;
 
     /**
      * @param  InputInterface  $input

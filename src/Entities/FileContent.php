@@ -12,12 +12,12 @@ class FileContent
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      */
-    private $downloadUrl;
+    private string $downloadUrl;
 
     /**
      * FileContent constructor.

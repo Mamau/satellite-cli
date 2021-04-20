@@ -22,12 +22,12 @@ final class GithubService
     /**
      * @var GithubRepository
      */
-    private $repository;
+    private GithubRepository $repository;
 
     /**
      * @var HttpClientInterface
      */
-    private $client;
+    private HttpClientInterface $client;
 
     /**
      * GithubService constructor.
@@ -67,13 +67,17 @@ final class GithubService
         $assets = $this->repository->fetchReleases();
 
         foreach ($assets as $asset) {
-            if (str_contains($asset->getName(), $os)) {
-                $name = 'starter';
-                if ($os === OperatingSystem::OS_WINDOWS) {
-                    $name = $name.'.exe';
-                }
-                $this->download($asset->getUri(), $name, $progress);
+            if (strpos($asset->getName(), $os) === false) {
+                continue;
             }
+
+            $name = 'starter';
+            if ($os === OperatingSystem::OS_WINDOWS) {
+                $name .= '.exe';
+            }
+
+            $this->download($asset->getUri(), $name, $progress);
+            break;
         }
     }
 

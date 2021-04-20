@@ -12,12 +12,12 @@ final class Asset
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * @var string
      */
-    private $uri;
+    private string $uri;
 
     /**
      * @param  string  $name

@@ -24,7 +24,7 @@ final class GithubRepository
     /**
      * @var HttpClientInterface
      */
-    private $client;
+    private HttpClientInterface $client;
 
     /**
      * GithubRepository constructor.
@@ -45,12 +45,10 @@ final class GithubRepository
     public function fetchReleases(): array
     {
         $assets = [];
-        $url = self::GITHUB_API_URI.'releases';
+        $url = self::GITHUB_API_URI.'releases/latest';
         $response = $this->client->request('GET', $url);
-        foreach ($response->toArray() as $release) {
-            foreach ($release['assets'] as $asset) {
-                $assets[] = new Asset($asset['name'], $asset['browser_download_url']);
-            }
+        foreach ($response->toArray()['assets'] as $asset) {
+            $assets[] = new Asset($asset['name'], $asset['browser_download_url']);
         }
 
         return $assets;
