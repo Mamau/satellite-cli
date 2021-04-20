@@ -1,6 +1,6 @@
 ## Starter-cli
 Cli command for delivery [starter](https://github.com/Mamau/starter) in your project.  
-### Использование
+### Usage
 Install
 ```bash
 composer require mamau/wkit --dev
