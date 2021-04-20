@@ -19,7 +19,7 @@ $rootPath = __DIR__ . '/../../../../';
 if (!is_file($rootPath . 'composer.json')) {
     $rootPath = __DIR__ . '/../';
 }
-define('BIN_PATH', __DIR__ . '/');
+
 define('PROJECT_ROOT', $rootPath);
 
 foreach ($composerAutoloadPaths as $file) {

@@ -5,7 +5,7 @@ Install
 ```bash
 composer require mamau/wkit --dev
 ```
-Download bin file for your current OS, it will be available in vendor/bin/starter
+Download bin file for your current OS
 ```bash
 vendor/bin/wkit fetch
 ```

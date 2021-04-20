@@ -76,7 +76,7 @@ final class GithubService
                 $name .= '.exe';
             }
 
-            $this->download($asset->getUri(), $name, $progress, BIN_PATH);
+            $this->download($asset->getUri(), $name, $progress);
             break;
         }
     }
@@ -89,13 +89,9 @@ final class GithubService
      * @return void
      * @throws TransportExceptionInterface
      */
-    private function download(string $url, string $name, \Closure $progress = null, string $savePath = null): void
+    private function download(string $url, string $name, \Closure $progress = null): void
     {
-        $path = PROJECT_ROOT . $name;
-        if ($savePath !== null) {
-            $path = $savePath . $name;
-        }
-        $file = new \SplFileObject($path, 'wb+');
+        $file = new \SplFileObject(PROJECT_ROOT . $name, 'wb+');
 
         foreach ($this->fetchContent($url, $progress) as $chunk) {
             $file->fwrite($chunk);

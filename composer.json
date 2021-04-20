@@ -10,8 +10,7 @@
         }
     ],
     "bin": [
-        "bin/wkit",
-        "bin/starter"
+        "bin/wkit"
     ],
     "require": {
         "php": ">=7.2",
