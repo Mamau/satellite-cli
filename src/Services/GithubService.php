@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Mamau\Wkit\Services;
@@ -39,8 +40,8 @@ final class GithubService
     }
 
     /**
-     * @param  string  $fileName
-     * @param  \Closure|null  $progress
+     * @param string $fileName
+     * @param \Closure|null $progress
      * @throws ClientExceptionInterface
      * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -54,8 +55,8 @@ final class GithubService
     }
 
     /**
-     * @param  string  $os
-     * @param  \Closure|null  $progress
+     * @param string $os
+     * @param \Closure|null $progress
      * @throws ClientExceptionInterface
      * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
@@ -65,7 +66,6 @@ final class GithubService
     public function fetchBinary(string $os, \Closure $progress = null): void
     {
         $assets = $this->repository->fetchReleases();
-
         foreach ($assets as $asset) {
             if (strpos($asset->getName(), $os) === false) {
                 continue;
@@ -76,20 +76,26 @@ final class GithubService
                 $name .= '.exe';
             }
 
-            $this->download($asset->getUri(), $name, $progress);
+            $this->download($asset->getUri(), $name, $progress, BIN_PATH);
             break;
         }
     }
 
     /**
-     * @param  string  $url
-     * @param  string  $name
-     * @param  \Closure|null  $progress
+     * @param string $url
+     * @param string $name
+     * @param \Closure|null $progress
+     * @param string|null $savePath
+     * @return void
      * @throws TransportExceptionInterface
      */
-    private function download(string $url, string $name, \Closure $progress = null): void
+    private function download(string $url, string $name, \Closure $progress = null, string $savePath = null): void
     {
-        $file = new \SplFileObject(PROJECT_ROOT.$name, 'wb+');
+        $path = PROJECT_ROOT . $name;
+        if ($savePath !== null) {
+            $path = $savePath . $name;
+        }
+        $file = new \SplFileObject($path, 'wb+');
 
         foreach ($this->fetchContent($url, $progress) as $chunk) {
             $file->fwrite($chunk);
@@ -97,14 +103,17 @@ final class GithubService
     }
 
     /**
-     * @param  string  $url
-     * @param  \Closure|null  $progress
+     * @param string $url
+     * @param \Closure|null $progress
      * @return \Traversable
      * @throws TransportExceptionInterface
      */
     private function fetchContent(string $url, \Closure $progress = null): \Traversable
     {
-        $response = $this->client->request('GET', $url, [
+        $response = $this->client->request(
+            'GET',
+            $url,
+            [
                 'on_progress' => $progress,
             ]
         );
