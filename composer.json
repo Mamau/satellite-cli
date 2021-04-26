@@ -1,5 +1,5 @@
 {
-    "name": "mamau/wkit",
+    "name": "mamau/satellite-cli",
     "description": "All tools for working with your project",
     "type": "library",
     "license": "MIT",
@@ -10,7 +10,7 @@
         }
     ],
     "bin": [
-        "bin/wkit"
+        "bin/satlt"
     ],
     "require": {
         "php": ">=7.4",
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Mamau\\Wkit\\": "src/"
+            "Mamau\\Satellite\\": "src/"
         }
     },
     "minimum-stability": "dev",

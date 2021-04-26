@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Mamau\Wkit\Commands;
+namespace Mamau\Satellite\Commands;
 
-use Mamau\Wkit\Environment\OperatingSystem;
-use Mamau\Wkit\Services\GithubService;
+use Mamau\Satellite\Environment\OperatingSystem;
+use Mamau\Satellite\Services\GithubService;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,7 +16,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class FetchReleaseCommand
- * @package Mamau\Wkit\Commands
+ * @package Mamau\Satellite\Commands
  */
 class FetchReleaseCommand extends AbstractCommand
 {
@@ -27,7 +27,7 @@ class FetchReleaseCommand extends AbstractCommand
      */
     protected function configure(): void
     {
-        $this->setDescription('Download fresh starter bin file');
+        $this->setDescription('Download fresh satellite bin file');
     }
 
 

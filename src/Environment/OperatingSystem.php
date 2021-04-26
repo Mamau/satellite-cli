@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mamau\Wkit\Environment;
+namespace Mamau\Satellite\Environment;
 
 /**
  * Class OperatingSystem
- * @package Mamau\Wkit\Environment
+ * @package Mamau\Satellite\Environment
  */
 final class OperatingSystem
 {

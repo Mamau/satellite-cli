@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-use Mamau\Wkit\Commands\ConfigCommand;
-use Mamau\Wkit\Commands\FetchReleaseCommand;
+use Mamau\Satellite\Commands\ConfigCommand;
+use Mamau\Satellite\Commands\FetchReleaseCommand;
 use Symfony\Component\Console\Application;
 
 $composerAutoloadPaths = [

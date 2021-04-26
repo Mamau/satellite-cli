@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Mamau\Wkit\Commands;
+namespace Mamau\Satellite\Commands;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Class AbstractCommand
- * @package Mamau\Wkit\Commands
+ * @package Mamau\Satellite\Commands
  */
 abstract class AbstractCommand extends Command
 {

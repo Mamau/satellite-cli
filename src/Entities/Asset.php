@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Mamau\Wkit\Entities;
+namespace Mamau\Satellite\Entities;
 
 /**
  * Class Asset
- * @package Mamau\Wkit\Entities
+ * @package Mamau\Satellite\Entities
  */
 final class Asset
 {

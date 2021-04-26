@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Mamau\Wkit\Services;
+namespace Mamau\Satellite\Services;
 
-use Mamau\Wkit\Environment\OperatingSystem;
-use Mamau\Wkit\Repositories\GithubRepository;
+use Mamau\Satellite\Environment\OperatingSystem;
+use Mamau\Satellite\Repositories\GithubRepository;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -16,7 +16,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * Class GithubService
- * @package Mamau\Wkit\Services
+ * @package Mamau\Satellite\Services
  */
 final class GithubService
 {
@@ -71,7 +71,7 @@ final class GithubService
                 continue;
             }
 
-            $name = 'starter';
+            $name = 'satlt';
             if ($os === OperatingSystem::OS_WINDOWS) {
                 $name .= '.exe';
             }

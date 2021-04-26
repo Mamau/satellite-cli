@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Mamau\Wkit\Repositories;
+namespace Mamau\Satellite\Repositories;
 
-use Mamau\Wkit\Entities\Asset;
-use Mamau\Wkit\Entities\FileContent;
+use Mamau\Satellite\Entities\Asset;
+use Mamau\Satellite\Entities\FileContent;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -15,11 +15,11 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * Class GithubRepository
- * @package Mamau\Wkit\Repositories
+ * @package Mamau\Satellite\Repositories
  */
 final class GithubRepository
 {
-    const GITHUB_API_URI = 'https://api.github.com/repos/Mamau/starter/';
+    const GITHUB_API_URI = 'https://api.github.com/repos/Mamau/satellite/';
 
     /**
      * @var HttpClientInterface

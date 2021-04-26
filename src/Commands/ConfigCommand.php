@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Mamau\Wkit\Commands;
+namespace Mamau\Satellite\Commands;
 
-use Mamau\Wkit\Services\GithubService;
+use Mamau\Satellite\Services\GithubService;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
@@ -14,7 +14,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * Class ConfigCommand
- * @package Mamau\Wkit\Commands
+ * @package Mamau\Satellite\Commands
  */
 class ConfigCommand extends AbstractCommand
 {
@@ -25,7 +25,7 @@ class ConfigCommand extends AbstractCommand
      */
     protected function configure(): void
     {
-        $this->setDescription('Download fresh config starter.yaml file');
+        $this->setDescription('Download fresh config satellite.yaml file');
     }
 
     /**
@@ -40,7 +40,7 @@ class ConfigCommand extends AbstractCommand
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        (new GithubService())->fetchFileContent('starter.yaml');
+        (new GithubService())->fetchFileContent('satellite.yaml');
 
         return self::SUCCESS;
     }
