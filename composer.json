@@ -10,7 +10,7 @@
         }
     ],
     "bin": [
-        "bin/satlt"
+        "bin/sat"
     ],
     "require": {
         "php": ">=7.4",

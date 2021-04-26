@@ -71,7 +71,7 @@ final class GithubService
                 continue;
             }
 
-            $name = 'satlt';
+            $name = 'sat';
             if ($os === OperatingSystem::OS_WINDOWS) {
                 $name .= '.exe';
             }
